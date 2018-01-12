@@ -11,6 +11,7 @@ bottle = "*"
 mysql-connector-python = "*"
 configparser = "*"
 mysqlclient = "*"
+instaloader = "*"
 
 
 [dev-packages]

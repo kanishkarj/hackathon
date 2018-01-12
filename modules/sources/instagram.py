@@ -6,7 +6,7 @@ def get_feed(name):
     loader = Instaloader()
     final_feed = feed([])
     x = loader.get_hashtag_posts(name)
-    maxcount = 10
+    maxcount = 50
     count = 0
     for i in x:
         count += 1
