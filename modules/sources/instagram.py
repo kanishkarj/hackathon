@@ -2,10 +2,10 @@ from instaloader import Instaloader
 from feed import feed, story
 
 
-def get_feed():
+def get_feed(name):
     loader = Instaloader()
     final_feed = feed([])
-    x = loader.get_hashtag_posts("flowers")
+    x = loader.get_hashtag_posts(name)
     maxcount = 10
     count = 0
     for i in x:
