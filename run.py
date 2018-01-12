@@ -1,6 +1,6 @@
 from bottle import route, run, template
 
-@route('/hello')
+@route('/')
 def hello():
     return template('home')
 
