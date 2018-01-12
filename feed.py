@@ -1,5 +1,5 @@
 class story:
-    def __init__(self, url, title, pub_time, content, source, ext_links):
+    def __init__(self, url, title, pub_time, content, source, ext_links=[]):
         self.title = title
         self.published = pub_time
         self.content = content
