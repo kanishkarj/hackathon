@@ -7,7 +7,10 @@ name = "pypi"
 
 [packages]
 
-instagram-scraper = "*"
+bottle = "*"
+mysql-connector-python = "*"
+configparser = "*"
+mysqlclient = "*"
 
 
 [dev-packages]
