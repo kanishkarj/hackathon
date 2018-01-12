@@ -8,6 +8,9 @@ name = "pypi"
 [packages]
 
 bottle = "*"
+mysql-connector-python = "*"
+configparser = "*"
+mysqlclient = "*"
 
 
 [dev-packages]
