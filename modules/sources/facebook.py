@@ -24,9 +24,6 @@ def get_feed(name):
     except:
         pass
 
-    print(res[0])
-    print(res[0].keys())
-
     for x in res:
         if 'link' not in x or 'message' not in x:
             continue

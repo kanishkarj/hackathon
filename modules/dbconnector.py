@@ -43,13 +43,12 @@ class dbconnector :
 
 
     def update_db(self) :
-        res = self.db.child('data').get();
-        for x in res:
-            y = main.get_feed(x['source'],x['title'])
-            self.data.update({
-                'source':x['source'],
+        res = self.db.child('data').get()
+        r = res.val()
+        for key in list(r.keys()):
+            x = r[key]
+            y = main.get_feed(x['src'],x['title'])
+            self.db.child('data').child(key).update({
                 'res':y.toJson(),
-                'title':x['title'],
-                'time': str(datetime.time),
-                'id':x['source']+'-'+x['title']
+                'time': str(datetime.datetime.now())
             })

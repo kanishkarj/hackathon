@@ -13,8 +13,7 @@ def content(tweet):
 def get_feed(page):
     numberofq = 50
     return_data = feed([])
-    for tweet in query_tweets('Blockchain from:' + page, numberofq)[:numberofq]:
-        print(tweet)
+    for tweet in query_tweets(page, numberofq)[:numberofq]:
         url = 'www.twitter.com/' + (tweet.user).lstrip('@') + '/status/' + tweet.id
 
         ext_url = {'embed_url': twitter_embed_base + url}
