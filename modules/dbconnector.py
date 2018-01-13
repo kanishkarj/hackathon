@@ -4,41 +4,41 @@ import datetime
 from modules import main
 from gi.repository import GLib
 import json;
-import pyrebase
-
+import pyrebase;
 
 class dbconnector :
 
     def __init__(self):
-        self.conf = {
+        self.config = {
           'apiKey': "AIzaSyB5ZW4igirOCICYO_lYxiTRbYJ61R-OVuo",
           'authDomain': "epic-shit.firebaseapp.com",
           'databaseURL': "https://epic-shit.firebaseio.com",
           'projectId': "epic-shit",
           'storageBucket': "epic-shit.appspot.com",
-          'messagingSenderId': "135240258150"
+          'messagingSenderId': "135240258150",
+          "serviceAccount": "settings.json"
         }
-        self.config = json.dumps(self.conf)
-        self.firebase = pyrebase.initialize_app(self.conf)
+        self.firebase = pyrebase.initialize_app(self.config)
         self.db = self.firebase.database()
-        self.data = self.db.child("data")
+
 
     def db_insert(self,source,title) :
-        res = main.get_feed(source,title);
-        self.data.push({
-            'source':source,
+        res = main.get_feed(source,title).toJson();
+        print(res)
+        self.db.child("data").push({
+            'src':source,
             'title':title,
-            'res':res.toJson(),
-            'time': str(datetime.time)
+            'time': str(datetime.datetime.now()),
+            'res':res,
         })
         return res
 
     def db_get(self,source,title):
         result = []
-        res = self.data.order_by_child("source").equal_to(source).order_by_child('title').equal_to(title)
-
-        if len(result) == 0:
-            result = self.db_insert(source,title).toJson()
+        all_data = self.db.get()
+        print(all_data.val())
+        result = self.db_insert(source,title)
+        if len(result) == 0: pass
         else :
             for x in res:
                 result.append(x)
@@ -46,7 +46,7 @@ class dbconnector :
 
 
     def update_db(self) :
-        res = self.data.get();
+        res = self.db.get();
         for x in res:
             y = main.get_feed(x['source'],x['title'])
             self.data.update({

@@ -33,4 +33,7 @@ class feed:
         pass
 
     def toJson(self):
-        return ','.join(json.dumps(x.__dict__) for x in self.stories)
+        res = []
+        for x in self.stories :
+            res.append(x.__dict__)
+        return res
