@@ -1,9 +1,8 @@
 import json
 import datetime
-import csv
 import time
 
-from ..feed import feed,story
+from ..feed import feed, story
 try:
     from urllib.request import urlopen, Request
 except ImportError:
@@ -18,27 +17,30 @@ access_token = app_id + "|" + app_secret
 def get_feed(name):
     res = scrapeFacebookPageFeedStatus(name, access_token, '', '')
     data = feed([])
-    print(res)
-    print(res.keys())
     i = 0
 
-    try :
+    try:
         res = res['data']
-    except :
+    except:
         pass
 
     print(res[0])
     print(res[0].keys())
 
     for x in res:
-        s = story(url= x['link'] if 'link' in x else '',
+        if 'link' not in x or 'content' not in x:
+            continue
+
+        ext_links['embed_url'] = "https://www.facebook.com/plugins/post.php?href={0}&width=500&show_text=true&height=472&appId".format(x['link'])
+        s = story(url= x['link'],
                   title='',
                   pub_time=x['created_time'].replace("+0000", "").replace("T", " "),
-                  content=x['message'] if 'message' in x else '',
-                  source='facebook')
+                  content=x['message'],
+                  source='facebook',
+                  ext_links=ext_links)
         data.append(s)
         i += 1
-        if i == 50:
+        if i >= 50:
             break
 
     return data
