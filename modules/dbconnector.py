@@ -1,5 +1,3 @@
-from pymongo import MongoClient
-from pymongo.collation import Collation
 import datetime
 from modules import main
 from gi.repository import GLib
