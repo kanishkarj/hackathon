@@ -13,7 +13,7 @@ def content(tweet):
 def get_feed(page):
     numberofq = 50
     return_data = feed([])
-    for tweet in query_tweets('Blockchain from:' + page, numberofq)[:numberofq]:
+    for tweet in query_tweets('from:' + page, numberofq)[:numberofq]:
         print(tweet)
         url = 'www.twitter.com/' + (tweet.user).lstrip('@') + '/status/' + tweet.id
 
