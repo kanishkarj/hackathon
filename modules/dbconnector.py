@@ -40,7 +40,7 @@ class dbconnector :
             result = all_data.val()
         except :
             result = self.db_insert(source,title)
-        return result
+        return True
 
 
     def update_db(self) :
