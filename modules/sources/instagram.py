@@ -31,7 +31,7 @@ def story_from_dict(item):
         content = item['node']['edge_media_to_caption']['edges'][0]['node']['text']
     except:
         content = ''
-    return story(url='www.instagram.com/p/'+item['node']['shortcode'],
+    return story(url='https://www.instagram.com/p/'+item['node']['shortcode'],
                  title='',
                  pub_time=item['node']['taken_at_timestamp'],
                  content=content,

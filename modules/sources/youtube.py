@@ -69,7 +69,7 @@ def get_uploads(upload_id):
 
 
 def return_story(item):
-    s = story(url='www.youtube.com/watch?v='+item['snippet']['resourceId']['videoId'],
+    s = story(url='https://www.youtube.com/watch?v='+item['snippet']['resourceId']['videoId'],
               title=item['snippet']['title'],
               pub_time=item['snippet']['publishedAt'].replace(".000Z", "").replace("T", " "),
               content=item['snippet']['description'],
