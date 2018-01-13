@@ -1,8 +1,6 @@
 import datetime
 from modules import main
-from gi.repository import GLib
-import json;
-import pyrebase;
+import pyrebase
 import threading
 
 def firebaseUpdate(r,key,db) :

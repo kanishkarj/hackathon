@@ -6,6 +6,7 @@ from ..feed import feed, story
 
 base_url = 'https://www.instagram.com/graphql/query/?query_id=17886322183179102&'
 
+
 def get_feed(name):
     query = 'variables=%7B"tag_name":"' + name + '","first":12%7D'
     url = base_url + query

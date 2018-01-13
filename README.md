@@ -4,7 +4,7 @@ The 'one stop shop' for all social media desires. Consolidates a lot of social m
 
 # Special Features
 
-- See what's trending in just one tap. 
+- See what's trending in just one tap.
 - Responsive web app for easy and universal access.
 - Live feed update using Google Firebase.
 - Designed with extensibilty in mind. Easy to add more social media platforms.
@@ -19,7 +19,7 @@ $ git clone https://github.com/kanishkarj/hackathon.git
 $ cd hackathon
 
 # Install the requirements
-$ pip install requirements.txt
+$ pip install -r requirements.txt
 
 # Run the server
 $ python run.py
@@ -33,4 +33,3 @@ $ python run.py
 - Twitter
 - 9gag
 - BuzzFeed
-
