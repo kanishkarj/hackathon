@@ -1,5 +1,5 @@
 from instaloader import Instaloader
-from feed import feed, story
+from ..feed import feed, story
 
 
 def get_feed(name):

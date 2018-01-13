@@ -1,4 +1,4 @@
-from feed import feed, story
+from ..feed import feed, story
 from urllib.parse import urlencode
 from urllib import request
 import json
