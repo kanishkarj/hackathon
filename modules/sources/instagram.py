@@ -18,6 +18,6 @@ def get_feed(name):
         else:
             ext['photo'] = i.url
         new_story = story("https://instagram.com/p/{}".format(i.shortcode),
-                          "", str(i.date), i.caption, "Instagram", ext)
+                          "", str(i.date), i.caption, "Instagram", ext, i.likes)
         final_feed.append(new_story)
     return final_feed
