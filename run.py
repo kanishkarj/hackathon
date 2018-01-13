@@ -4,7 +4,6 @@ import json
 
 conn = dbconnector.dbconnector()
 
-
 @post('/')
 def hello():
     source = str(request.forms.get('source'))

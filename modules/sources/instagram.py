@@ -31,10 +31,14 @@ def story_from_dict(item):
         content = item['node']['edge_media_to_caption']['edges'][0]['node']['text']
     except:
         content = ''
+    try:
+        ext_links={'photo': item['node']['display_url']}
+    except:
+        ext_links = {'video': item['node']}
     return story(url='https://www.instagram.com/p/'+item['node']['shortcode'],
                  title='',
                  pub_time=item['node']['taken_at_timestamp'],
                  content=content,
                  source='instagram',
                  likes=item['node']['edge_liked_by']['count'],
-                 ext_links=[item['node']['display_url']])
+                 )

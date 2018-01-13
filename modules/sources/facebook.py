@@ -18,6 +18,8 @@ access_token = app_id + "|" + app_secret
 def get_feed(name):
     res = scrapeFacebookPageFeedStatus(name, access_token, '', '')
     data = feed([])
+    print(res)
+    print(res.keys())
     i = 0
 
     try :
