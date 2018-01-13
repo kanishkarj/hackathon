@@ -28,12 +28,13 @@ class dbconnector :
             'title':title,
             'time': str(datetime.datetime.now()),
             'res':res,
+            'id':source+'-'+title
         })
         return res
 
     def db_get(self,source,title):
         result = []
-        all_data = self.db.child('data').order_by_child('src').equal_to(source).order_by_child('title').equal_to(title).get()
+        all_data = self.db.child('data').order_by_child('id').equal_to(source+'-'+title).get()
         try :
             result = all_data.val()
         except :
@@ -49,5 +50,6 @@ class dbconnector :
                 'source':x['source'],
                 'res':y.toJson(),
                 'title':x['title'],
-                'time': str(datetime.time)
+                'time': str(datetime.time),
+                'id':x['source']+'-'+x['title']
             })
