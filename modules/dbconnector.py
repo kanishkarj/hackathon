@@ -4,6 +4,7 @@ import datetime
 from modules import main
 
 class dbconnector :
+
     def __init__(self):
         self.client = MongoClient('localhost', 27017)
         self.db = self.client.hackathon
@@ -16,6 +17,8 @@ class dbconnector :
             'res':res.toJson(),
             'time': str(datetime.time)
         })
+
+
 
     def update_db(self) :
         res = self.coll.find();
