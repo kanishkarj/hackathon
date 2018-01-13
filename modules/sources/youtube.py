@@ -3,7 +3,7 @@ from urllib.parse import urlencode
 from urllib import request
 import json
 import re
-
+import os
 
 def get_feed(name):
     uploads = get_channel_uploads(name)
@@ -17,7 +17,7 @@ def get_feed(name):
 
 def call_gdata(api, qs):
     qs = dict(qs)
-    qs['key'] = 'AIzaSyDvysm00R5FClmqtxcATsgpKHdt2GxCaiU'
+    qs['key'] = os.environ['YOUTUBE_KEY']
     url = 'https://www.googleapis.com/youtube/v3/' + api + '?' + urlencode(qs)
 
     data = request.urlopen(url).read().decode('utf-8')

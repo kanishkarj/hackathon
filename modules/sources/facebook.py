@@ -1,6 +1,7 @@
 import json
 import datetime
 import time
+import os
 
 from ..feed import feed, story
 try:
@@ -8,8 +9,8 @@ try:
 except ImportError:
     from urllib2 import urlopen, Request
 
-app_id = "542979522719768"
-app_secret = "c1dfb166b76b79bd19f3ca811bea1aba"  # DO NOT SHARE WITH ANYONE!
+app_id = os.environ['FACEBOOK_APP_ID']
+app_secret = os.environ['FACEBOOK_SECRET_KEY']  # DO NOT SHARE WITH ANYONE!
 
 access_token = app_id + "|" + app_secret
 

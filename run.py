@@ -2,6 +2,12 @@ from bottle import route, run, request
 from modules import dbconnector
 import threading
 
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 conn = dbconnector.dbconnector()
 
 def update():
@@ -24,4 +30,4 @@ def hello():
     return res
 
 
-run(host='192.168.2.226', port=8080, debug=True)
+run(host='localhost', port=8080, debug=True)

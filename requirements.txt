@@ -2,3 +2,4 @@
 twitterscraper>=0.4.1
 bottle>=0.12.13
 pyrebase>=3.0.27
+environ>=1.0

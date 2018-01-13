@@ -2,6 +2,7 @@ import datetime
 from modules import main
 import pyrebase
 import threading
+import os
 
 def firebaseUpdate(r,key,db) :
     x = r[key]
@@ -16,13 +17,13 @@ class dbconnector :
 
     def __init__(self):
         self.config = {
-          'apiKey': "AIzaSyB5ZW4igirOCICYO_lYxiTRbYJ61R-OVuo",
-          'authDomain': "epic-shit.firebaseapp.com",
-          'databaseURL': "https://epic-shit.firebaseio.com",
-          'projectId': "epic-shit",
-          'storageBucket': "epic-shit.appspot.com",
-          'messagingSenderId': "135240258150",
-          "serviceAccount": "settings.json"
+          'apiKey': os.environ['APIKEY'],
+          'authDomain': os.environ['AUTHDOMAIN'],
+          'databaseURL':os.environ['DATABASEURL'],
+          'projectId':os.environ['PROJECTID'],
+          'storageBucket': os.environ['STORAGEBUCKET'],
+          'messagingSenderId':os.environ['MESSAGINGSENDERID'],
+          "serviceAccount": os.environ['SERVICEACCOUNT'],
         }
         self.firebase = pyrebase.initialize_app(self.config)
         self.db = self.firebase.database()
