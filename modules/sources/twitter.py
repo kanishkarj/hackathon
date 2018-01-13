@@ -1,25 +1,25 @@
-#!python3
 from twitterscraper import query_tweets
 import json
+from ..feed import feed, story
+
 
 def content(tweet):
     if '"' in tweet:
         tweet = '\\"'.join(tweet.split('"'))
     return tweet
 
-def generatejson(tag, location):
-    numberofq=50
-    jsonfile=[]
+
+def get_feed(tag):
+    numberofq = 50
+    return_data = feed([])
     for tweet in query_tweets(tag, numberofq)[:numberofq]:
- #   for tweet in query_tweets(tag, 10)[:numberofq]:
-        jsonfile.append({"title": tweet.fullname,
-                         "published": str(tweet.timestamp),
-                         "likes": tweet.likes,
-                         "content": content(tweet.text),
-                         "url": 'www.twitter.com/' + (tweet.user).lstrip('@') + '/status/' + tweet.id,
-                         "source": 'Twitter'})
+        s = story(title=tweet.fullname,
+                  pub_time=str(tweet.timestamp),
+                  likes=tweet.likes,
+                  content=content(tweet.text),
+                  url='www.twitter.com/' + (tweet.user).lstrip('@') + '/status/' + tweet.id,
+                  source='Twitter')
 
-    print(json.dumps(jsonfile))
+        return_data.append(s)
 
-generatejson(tag='Food', location='India')
-#generatejson(tag='football')
+    return return_data
