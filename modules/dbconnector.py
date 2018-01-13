@@ -1,5 +1,3 @@
-from pymongo import MongoClient
-from pymongo.collation import Collation
 import datetime
 from modules import main
 from gi.repository import GLib
@@ -37,10 +35,10 @@ class dbconnector :
         result = []
         all_data = self.db.get()
         print(all_data.val())
-        result = self.db_insert(source,title)
-        if len(result) == 0: pass
+        if len(all_data.val()) == 0:
+            result = self.db_insert(source,title)
         else :
-            for x in res:
+            for x in all_data:
                 result.append(x)
         return result
 

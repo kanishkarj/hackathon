@@ -13,4 +13,4 @@ def hello():
     # conn.update_db()
     return res
 
-run(host='localhost', port=8080, debug=True)
+run(host='192.168.2.226', port=8080, debug=True)
