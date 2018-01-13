@@ -27,10 +27,14 @@ def get_feed(name):
 
 
 def story_from_dict(item):
+    try:
+        content = item['node']['edge_media_to_caption']['edges'][0]['node']['text']
+    except:
+        content = ''
     return story(url='www.instagram.com/p/'+item['node']['shortcode'],
                  title='',
                  pub_time=item['node']['taken_at_timestamp'],
-                 content=item['node']['edge_media_to_caption']['edges'][0]['node']['text'],
+                 content=content,
                  source='instagram',
                  likes=item['node']['edge_liked_by']['count'],
                  ext_links=[item['node']['display_url']])

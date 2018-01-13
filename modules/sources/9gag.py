@@ -14,8 +14,7 @@ def get_feed(name):
     for i in data:
         if count >= maxcount:
             break
-        print(i)
         new_story = story(i['url'], '', '', i['title'], '9gags', {
-                          'photo': ['i.imageURL']}, i['upVoteCount'])
+                          'photo': i['imageURL']}, i['upVoteCount'])
         final.append(new_story)
     return final
