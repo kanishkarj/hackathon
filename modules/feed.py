@@ -1,13 +1,14 @@
 import json
 
 class story:
-    def __init__(self, url, title, pub_time, content, source, ext_links=[]):
+    def __init__(self, url, title, pub_time, content, source, likes, ext_links=[]):
         self.title = title
         self.published = pub_time
         self.content = content
         self.url = url
         self.source = source
         self.ext_links = ext_links  # ext_links is a list
+        self.likes = likes
 
 
 class feed:
@@ -24,8 +25,8 @@ class feed:
     def extend(self, feed):
         self.stories.extend(feed)
 
-    def sortByTime(self):
-        pass
+    def sortByTime(self, reverse):
+        self.stories.sort(key=lambda x: x.published, reverse=reverse)
 
     def sortByPopularity(self):
         pass
