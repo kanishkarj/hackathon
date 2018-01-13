@@ -3,6 +3,16 @@ from modules import main
 from gi.repository import GLib
 import json;
 import pyrebase;
+import threading
+
+def firebaseUpdate(r,key,db) :
+    x = r[key]
+    y = main.get_feed(x['src'],x['title'])
+
+    db.child('data').child(key).update({
+        'res':y.toJson(),
+        'time': str(datetime.datetime.now())
+    })
 
 class dbconnector :
 
@@ -45,10 +55,9 @@ class dbconnector :
     def update_db(self) :
         res = self.db.child('data').get()
         r = res.val()
+
         for key in list(r.keys()):
-            x = r[key]
-            y = main.get_feed(x['src'],x['title'])
-            self.db.child('data').child(key).update({
-                'res':y.toJson(),
-                'time': str(datetime.datetime.now())
-            })
+            t = threading.Thread(target = firebaseUpdate, args = (r,key,self.db))
+            t.setDaemon(True)
+            t.start()
+        print("hey! i just updated")

@@ -10,7 +10,7 @@ class story:
         self.source = source
         self.ext_links = ext_links  # ext_links is a list
         self.likes = likes
-        self.id = self.source +'-'+ self.title 
+    
 
 class feed:
     def __init__(self, stories):
