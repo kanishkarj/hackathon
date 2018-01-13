@@ -24,7 +24,7 @@ class dbconnector :
 
     def db_insert(self,source,title) :
         res = main.get_feed(source,title).toJson();
-        print(res)
+        # print(res)
         self.db.child("data").push({
             'src':source,
             'title':title,
@@ -35,18 +35,16 @@ class dbconnector :
 
     def db_get(self,source,title):
         result = []
-        all_data = self.db.get()
-        print(all_data.val())
-        result = self.db_insert(source,title)
-        if len(result) == 0: pass
-        else :
-            for x in res:
-                result.append(x)
+        all_data = self.db.child('data').order_by_child('src').equal_to(source).order_by_child('title').equal_to(title).get()
+        try :
+            result = all_data.val()
+        except :
+            result = self.db_insert(source,title)
         return result
 
 
     def update_db(self) :
-        res = self.db.get();
+        res = self.db.child('data').get();
         for x in res:
             y = main.get_feed(x['source'],x['title'])
             self.data.update({
@@ -55,6 +53,3 @@ class dbconnector :
                 'title':x['title'],
                 'time': str(datetime.time)
             })
-
-    def initiate_update(self) :
-        GLib.timeout_add_seconds(1, self.update_db)
