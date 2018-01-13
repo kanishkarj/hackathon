@@ -17,6 +17,7 @@ def get_feed(page):
         url = 'www.twitter.com/' + (tweet.user).lstrip('@') + '/status/' + tweet.id
 
         ext_url = {'embed_url': twitter_embed_base + url}
+        return tweet
 
         s = story(title=tweet.fullname,
                   pub_time=str(tweet.timestamp),
