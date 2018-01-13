@@ -1,7 +1,8 @@
 import json
 
+
 class story:
-    def __init__(self, url, title, pub_time, content, source, likes, ext_links=[]):
+    def __init__(self, url, title, pub_time, content, source, ext_links=[], likes=None):
         self.title = title
         self.published = pub_time
         self.content = content

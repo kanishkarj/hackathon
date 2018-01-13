@@ -1,12 +1,16 @@
-from bottle import route, run, template
-from modules import main,dbconnector
+from bottle import post, run, template,request
+from modules import dbconnector
 import json
 
-@route('/')
+conn = dbconnector.dbconnector()
+
+@post('/')
 def hello():
-    res = main.get_feed("facebook","pclubiiti")
-    # conn = dbconnector.dbconnector()
+    source = str(request.forms.get('source'))
+    title = str(request.forms.get('title'))
+    res = conn.db_get(source,title)
     # conn.db_insert("instagram","flower",res)
-    return template('home')
+    print(res)
+    return res
 
 run(host='localhost', port=8080, debug=True)
