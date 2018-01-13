@@ -41,4 +41,5 @@ def story_from_dict(item):
                  content=content,
                  source='instagram',
                  likes=item['node']['edge_liked_by']['count'],
+                 ext_links=ext_links
                  )

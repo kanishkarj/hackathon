@@ -27,6 +27,9 @@ def get_feed(name):
     except :
         pass
 
+    print(res[0])
+    print(res[0].keys())
+
     for x in res:
         s = story(url= x['link'] if 'link' in x else '',
                   title='',
