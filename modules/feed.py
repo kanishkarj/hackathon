@@ -1,3 +1,5 @@
+import json
+
 class story:
     def __init__(self, url, title, pub_time, content, source, ext_links=[]):
         self.title = title
@@ -27,3 +29,6 @@ class feed:
 
     def sortByPopularity(self):
         pass
+
+    def toJson(self):
+        return ','.join(json.dumps(x.__dict__) for x in self.stories)
