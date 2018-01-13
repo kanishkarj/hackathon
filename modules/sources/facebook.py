@@ -28,7 +28,7 @@ def get_feed(name):
     print(res[0].keys())
 
     for x in res:
-        if 'link' not in x or 'content' not in x:
+        if 'link' not in x or 'message' not in x:
             continue
 
         ext_links['embed_url'] = "https://www.facebook.com/plugins/post.php?href={0}&width=500&show_text=true&height=472&appId".format(x['link'])
