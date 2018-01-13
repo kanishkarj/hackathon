@@ -9,10 +9,10 @@ def content(tweet):
     return tweet
 
 
-def get_feed(tag):
+def get_feed(page):
     numberofq = 50
     return_data = feed([])
-    for tweet in query_tweets(tag, numberofq)[:numberofq]:
+    for tweet in query_tweets('Blockchain from:'+ page, numberofq)[:numberofq]:
         s = story(title=tweet.fullname,
                   pub_time=str(tweet.timestamp),
                   likes=tweet.likes,
@@ -23,3 +23,4 @@ def get_feed(tag):
         return_data.append(s)
 
     return return_data
+
