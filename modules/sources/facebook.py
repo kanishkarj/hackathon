@@ -2,10 +2,36 @@ import json
 import datetime
 import csv
 import time
+
+from feed import feed, story
 try:
     from urllib.request import urlopen, Request
 except ImportError:
     from urllib2 import urlopen, Request
+
+app_id = "542979522719768"
+app_secret = "c1dfb166b76b79bd19f3ca811bea1aba"  # DO NOT SHARE WITH ANYONE!
+
+access_token = app_id + "|" + app_secret
+
+
+def get_feed(name):
+    res = scrapeFacebookPageFeedStatus(name, access_token, '', '')
+    data = feed([])
+    i = 0
+    for x in res:
+        s = story(url= x['link'] if 'link' in x else '',
+                  title='',
+                  pub_time=x['created_time'].replace("+0000", "").replace("T", " "),
+                  content=x['message'] if 'message' in x else '',
+                  source='facebook')
+        data.append(s)
+        i += 1
+        if i == 50:
+            break
+
+    return data
+
 
 def request_until_succeed(url):
     req = Request(url)
@@ -127,7 +153,7 @@ def scrapeFacebookPageFeedStatus(page_id, access_token, since_date, until_date):
     until = "&until={}".format(until_date) if until_date \
         is not '' else ''
 
-    print("Scraping {} Facebook Page: {}\n".format(page_id, scrape_starttime))
+    #print("Scraping {} Facebook Page: {}\n".format(page_id, scrape_starttime))
 
     while has_next_page:
         after = '' if after is '' else "&after={}".format(after)
@@ -136,8 +162,7 @@ def scrapeFacebookPageFeedStatus(page_id, access_token, since_date, until_date):
         url = getFacebookPageFeedUrl(base_url)
         statuses = json.loads(request_until_succeed(url))
         # reactions = getReactionsForStatuses(base_url)
-        with open('data.json', 'w') as outfile:
-            json.dump(statuses, outfile)
+
         for status in statuses['data']:
 
                 # Ensure it is a status with the expected metadata
