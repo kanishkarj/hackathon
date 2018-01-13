@@ -31,7 +31,7 @@ def get_feed(name):
         if 'link' not in x or 'message' not in x:
             continue
 
-        ext_links['embed_url'] = "https://www.facebook.com/plugins/post.php?href={0}&width=500&show_text=true&height=472&appId".format(x['link'])
+        ext_links = {'embed_url': "https://www.facebook.com/plugins/post.php?href=" + x['link'] + "&width=500&show_text=true&height=472&appId"}
         s = story(url= x['link'],
                   title='',
                   pub_time=x['created_time'].replace("+0000", "").replace("T", " "),

@@ -74,6 +74,6 @@ def return_story(item):
               pub_time=item['snippet']['publishedAt'].replace(".000Z", "").replace("T", " "),
               content=item['snippet']['description'],
               source='youtube',
-              ext_links=[])
+              ext_links={'embed_url': 'https://www.youtube.com/embed/'+item['snippet']['resourceId']['videoId']})
 
     return s
