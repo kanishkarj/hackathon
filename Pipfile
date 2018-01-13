@@ -12,6 +12,7 @@ mysql-connector-python = "*"
 configparser = "*"
 mysqlclient = "*"
 pymongo = "*"
+instaloader = "*"
 
 
 [dev-packages]

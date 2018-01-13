@@ -11,6 +11,10 @@ class story:
 class feed:
     def __init__(self, stories):
         self.stories = stories
+        self.__iter__ = self.stories.__iter__
+
+    def __getitem__(self, index):
+        return self.stories[index]
 
     def append(self, story):
         self.stories.append(story)
