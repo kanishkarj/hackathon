@@ -1,6 +1,7 @@
 from bottle import route, run, request
 from modules import dbconnector
 import threading
+import os
 
 from os.path import join, dirname
 from dotenv import load_dotenv
@@ -11,7 +12,7 @@ load_dotenv(dotenv_path)
 conn = dbconnector.dbconnector()
 
 def update():
-  t = threading.Timer(10, update)
+  t = threading.Timer(1500, update)
   t.setDaemon(True)
   t.start()
   conn.update_db()
