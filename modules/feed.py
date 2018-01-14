@@ -2,7 +2,7 @@ import json
 
 
 class story:
-    def __init__(self, url, title, pub_time, content, source, ext_links=[], likes=None):
+    def __init__(self, id,url, title, pub_time, content, source, ext_links=[],likes=None):
         self.title = title
         self.published = pub_time
         self.content = content
@@ -10,7 +10,7 @@ class story:
         self.source = source
         self.ext_links = ext_links  # ext_links is a list
         self.likes = likes
-    
+        self.id=id
 
 class feed:
     def __init__(self, stories):

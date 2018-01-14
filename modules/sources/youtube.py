@@ -9,7 +9,7 @@ def get_feed(name):
     uploads = get_channel_uploads(name)
     youtube_videos = feed([])
     for item in uploads['items']:
-        s = return_story(item)
+        s = return_story(item,name)
         youtube_videos.append(story=s)
 
     return youtube_videos
@@ -68,12 +68,13 @@ def get_uploads(upload_id):
     return data
 
 
-def return_story(item):
+def return_story(item,name):
     s = story(url='https://www.youtube.com/watch?v='+item['snippet']['resourceId']['videoId'],
               title=item['snippet']['title'],
               pub_time=item['snippet']['publishedAt'].replace(".000Z", "").replace("T", " "),
               content=item['snippet']['description'],
               source='youtube',
+              id='youtube'+'-'+name,
               ext_links={'photo': 'http://i.ytimg.com/vi/'+item['snippet']['resourceId']['videoId']+'/mqdefault.jpg'})
 
     return s

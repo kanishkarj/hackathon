@@ -35,6 +35,7 @@ def get_feed(name):
                   pub_time=x['created_time'].replace("+0000", "").replace("T", " "),
                   content=x['message'],
                   source='facebook',
+                  id='facebook'+'-'+name,
                   ext_links=ext_links)
         data.append(s)
         i += 1
@@ -104,8 +105,6 @@ def scrapeFacebookPageFeedStatus(page_id, access_token, since_date, until_date):
 
         url = getFacebookPageFeedUrl(base_url)
         statuses = json.loads(request_until_succeed(url))
-
-
         # if there is no next page, we're done.
         if 'paging' in statuses:
             after = statuses['paging']['cursors']['after']
@@ -113,6 +112,3 @@ def scrapeFacebookPageFeedStatus(page_id, access_token, since_date, until_date):
             has_next_page = False
 
         return statuses
-
-    print("\nDone!\n{} Statuses Processed in {}".format(
-          num_processed, datetime.datetime.now() - scrape_starttime))

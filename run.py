@@ -23,11 +23,9 @@ update()
 def hello():
     source = str(request.query.get('source'))
     title = str(request.query.get('title'))
-    print(source)
-    print(title)
     res = conn.db_get(source, title)
     # conn.db_insert("instagram","flower",res)
     return res
 
 
-run(host='localhost', port=8080, debug=True)
+run(host=os.environ['HOST'], port=os.environ['PORT'], debug=True)

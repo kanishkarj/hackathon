@@ -21,13 +21,13 @@ def get_feed(name):
 
     return_data = feed([])
     for item in data:
-        s = story_from_dict(item)
+        s = story_from_dict(item,name)
         return_data.append(s)
 
     return return_data
 
 
-def story_from_dict(item):
+def story_from_dict(item,name):
     try:
         content = item['node']['edge_media_to_caption']['edges'][0]['node']['text']
     except:
@@ -42,6 +42,7 @@ def story_from_dict(item):
                  pub_time=item['node']['taken_at_timestamp'],
                  content=content,
                  source='instagram',
+                 id='instagram'+'-'+name,
                  likes=item['node']['edge_liked_by']['count'],
                  ext_links=ext_links
                  )
